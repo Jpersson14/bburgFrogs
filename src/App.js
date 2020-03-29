@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import ReactMap from "./ReactMap";
+import ReactMap from "./Map/ReactMap";
 import './App.css';
 
-import { render } from 'react-dom'
 
 function App() {
   return (
