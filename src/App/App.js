@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactMap from "./Map/ReactMap";
+import ReactMap from "../ReactMap";
 import './App.css';
-
 
 function App() {
   return (

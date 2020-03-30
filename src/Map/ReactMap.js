@@ -17,7 +17,14 @@ export default class ReactMap extends React.Component {
       zoom: 13,
       open: false
     }
+    this.mapRef = React.createRef();
+  }
 
+  componentDidMount(){
+    omnivore.kml('FrogLocations.kml').addTo(this.mapRef.current.leafletElement)
+    .on('error', function(error) {
+      console.log(error);
+    });
   }
 
   handleDrawerToggle = () => {
@@ -34,7 +41,7 @@ export default class ReactMap extends React.Component {
         <MapDrawer open={open}>
         </MapDrawer>
         <div className={open ?  "shift-map-right" : "shift-map-left"}>
-          <Map center={position} zoomControl={false} zoom={this.state.zoom}>
+          <Map ref={this.mapRef} center={position} zoomControl={false} zoom={this.state.zoom}>
             <MapButtons 
               drawerToggle={this.handleDrawerToggle}
               open={open}
