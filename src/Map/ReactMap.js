@@ -3,6 +3,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import MapDrawer from '../Drawer/MapDrawer'
 import MapButtons from './MapButtons'
 import "./ReactMap.css"
+import omnivore from "@mapbox/leaflet-omnivore"
 
 const styles = theme => ({
 
@@ -50,11 +51,6 @@ export default class ReactMap extends React.Component {
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
             />
-            <Marker position={position}>
-              <Popup>
-                A pretty CSS3 popup. <br/> Easily customizable.
-              </Popup>
-            </Marker>
           </Map>
         </div>
       </React.Fragment>

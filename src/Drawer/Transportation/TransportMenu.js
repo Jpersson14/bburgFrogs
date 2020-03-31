@@ -12,18 +12,22 @@ export default function TransportMenu(props) {
         transport : [
             {
                 name: "car",
+                id: "driving-car",
                 image: mdiCar
             },
             {
                 name: "heavy_vehicle",
+                id: "driving-hgv",
                 image: mdiDumpTruck
             },
             {
                 name: "bicycle",
+                id: "cycling-regular",
                 image: mdiBike
             },
             {
                 name: "pedestrian",
+                id: "foot-walking",
                 image: mdiWalk
             }
         ]
@@ -34,8 +38,13 @@ export default function TransportMenu(props) {
             <Grid container spacing={3}>
                 {transportState.transport.map(transport => {
                     return( 
-                        <Grid item xs={3}>
-                            <IconButton id={transport.name}>
+                        <Grid 
+                            key={transport.id}
+                            item xs={3}>
+                            <IconButton 
+                                id={transport.name}
+                                color = {transport.id === props.active ? "primary" : "white"}
+                                onClick={(event) => props.changeHandler(event, transport.id)}>
                                 <SvgIcon>
                                     <path d={transport.image}/>
                                 </SvgIcon>

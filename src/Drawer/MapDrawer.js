@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -17,7 +17,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MapDrawer(props) {
+const MapDrawer = (props) => {
+  const [drawerState, setDrawerState] = useState({
+    transportType: "driving-car"
+  })
+
+  const handleTransportChange = (event, id) =>{
+    setDrawerState({
+      transportType: id,
+      start: null,
+      end: null,
+      waypoints: []
+    })
+  }
+
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -31,10 +44,15 @@ export default function MapDrawer(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <TransportMenu/>
+        <TransportMenu
+          active={drawerState.transportType}
+          changeHandler={handleTransportChange}
+        />
         <Divider />
-        <AreaSelector></AreaSelector>
+        <AreaSelector text={drawerState.transportType} ></AreaSelector>
       </Drawer>
     </React.Fragment>
   );
 }
+
+export default MapDrawer;
